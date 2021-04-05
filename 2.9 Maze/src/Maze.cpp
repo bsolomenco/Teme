@@ -17,8 +17,6 @@ void Maze::run(int row0, int col0, int row1, int col1){
         return;
     }
     _minimalSolution = 0;
-    auto rows = _matrix.size();
-    auto cols = _matrix[0].size();
     std::queue<Cell> cellsToVisit;
     _matrix[row1][col1] = CellType::SOLUTION;//distance from (row1,col1) to (row1,col1)
     cellsToVisit.push({row1,col1});

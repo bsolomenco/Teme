@@ -17,10 +17,10 @@ Stack (list based, type=int)
 
 Queue (list based, type=int)
 
-Parens
+ParensMatch
 - obvious rule: matching pairs: () [] {}
 - unclear rule: nesting rank ("sirul ([]) nu este corect"), assume: () < [] < {}
 - allowed??? (()) [[]] {{}}
 
-Conex
+Connex
 - there is a mistake in requirements: the example for 2.8!!!

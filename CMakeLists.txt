@@ -10,7 +10,8 @@ project(Teme
 include(Ns.cmake)
 
 add_subdirectory("2.1 Stack")
-add_subdirectory("2.2 Parens")
+add_subdirectory("2.2 ParensMatch")
+add_subdirectory("2.3 Rpn")
 add_subdirectory("2.8 Connex")
 add_subdirectory("2.9 Maze")
 
