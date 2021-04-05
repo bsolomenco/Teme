@@ -11,6 +11,7 @@ Build
 
 Run
 - start each executable without arguments and it will tell you how to use it
+- there is a test file in each folder, use it as input
 
 Stack (list based, type=int)
 
