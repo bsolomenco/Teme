@@ -17,8 +17,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv){
     auto redirectedStdin = !isatty(STDIN_FILENO);
     if(!redirectedStdin){//console input (not redirected)
         printf(
-            "usage (file input)     : Parens < inputFile\n"
-            "usage (console input)  : Parens\n"
+            "usage (file input)     : ParensMatch < inputFile\n"
+            "usage (console input)  : ParensMatch\n"
             "input syntax: one parenthesis expression per line with ranking: {} > [] > (), like:\n"
             "        ()\n"
             "        {[()]}\n"

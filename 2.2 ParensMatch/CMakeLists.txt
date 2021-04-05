@@ -2,7 +2,7 @@
 #rd /Q /S .tmp & cmake -B .tmp && cmake --build .tmp --target install --config Release
 
 cmake_minimum_required(VERSION 3.20)
-project(Parens
+project(ParensMatch
     VERSION 0.0.1
     DESCRIPTION "Parenthesis match"
 )
