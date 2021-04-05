@@ -13,14 +13,18 @@ Run
 - start each executable without arguments and it will tell you how to use it
 - there is a test file in each folder, use it as input
 
-Stack (list based, type=int)
+2.1 Stack (list based, type=int)
 
-Queue (list based, type=int)
-
-ParensMatch
+2.2 ParensMatch
 - obvious rule: matching pairs: () [] {}
 - unclear rule: nesting rank ("sirul ([]) nu este corect"), assume: () < [] < {}
 - allowed??? (()) [[]] {{}}
 
-Connex
-- there is a mistake in requirements: the example for 2.8!!!
+2.3 RPN (Reverse Polish Notation)
+- limitation: works only with single digit numbers
+
+2.8 Connex
+- there is a mistake in requirements: object 1 from the example is WRONG!!!
+
+2.9 Maze
+- show ALL minimal solutions/paths (marked with "1" in the matrix)
