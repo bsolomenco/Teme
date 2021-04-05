@@ -16,10 +16,8 @@ Queue (list based, type=int)
 
 Parens
 - obvious rule: matching pairs: () [] {}
-- unclear rule: nesting rank ("sirul ([]) nu este corect") could be:
-    () < [] < {}
-    () <= [] <= {}
+- unclear rule: nesting rank ("sirul ([]) nu este corect"), assume: () < [] < {}
 - allowed??? (()) [[]] {{}}
 
 Conex
-- there is a mistake in the example for 2.8!!!
+- there is a mistake in requirements: the example for 2.8!!!
