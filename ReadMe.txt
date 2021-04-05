@@ -9,6 +9,8 @@ Build
     Linux/gcc   : rm -rf .tmp   ; cmake -B .tmp && cmake --build .tmp --target install --config Release
     Windows/VS  : rd /Q /S .tmp & cmake -B .tmp && cmake --build .tmp --target install --config Release
 
+Run
+- start each executable without arguments and it will tell you how to use it
 
 Stack (list based, type=int)
 
