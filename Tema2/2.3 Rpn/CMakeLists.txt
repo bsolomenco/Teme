@@ -2,12 +2,12 @@
 #rd /Q /S .tmp & cmake -B .tmp && cmake --build .tmp --target install --config Release
 
 cmake_minimum_required(VERSION 3.20)
-project(ParensMatch
+project(Rpn
     VERSION 0.0.1
-    DESCRIPTION "Parenthesis match"
+    DESCRIPTION "Arithmetic expression parser & evaluater using Reverse Polish Notation"
 )
 
-include(../Ns.cmake)
+include(../../Ns.cmake)
 
 file(GLOB_RECURSE Src CONFIGURE_DEPENDS
     src/*.cpp

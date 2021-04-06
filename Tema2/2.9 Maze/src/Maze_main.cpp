@@ -66,32 +66,35 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv){
         printf("no solution found!\n");
         return 3;
     }
-    printf("minimal solution(s) (distance=%d) marked with 1:\n", maze.minimalSolution());
+    printf("minimal solution(s) (distance=%d): any sequence %d..1 starting from (row0=%d col0=%d):\n", maze.minimalSolution(), maze.minimalSolution(), row0, col0);
     writeMatrixToFile(matrix, stdout);
     printf("one possible minimal solution:\n");
     int rows = (int)matrix.size();
     int cols = (int)matrix[0].size();
     auto row = row0;
     auto col = col0;
+    int dist = 0;
     while(1){
-        printf("(%d,%d)\n", row, col);
+        dist = matrix[row][col];
+        printf("(%d,%d) dist=%d\n", row, col, dist);
         matrix[row][col] = 0;
         if(row==row1 && col==col1){
             break;
         }
-        if(0<row && matrix[row-1][col]==1){//move up
+        --dist;//pick a neighbor which is one step closer to destination
+        if(0<row && matrix[row-1][col]==dist){//move up
             --row;
             continue;
         }
-        if(col+1<cols && matrix[row][col+1]==1){//move right
+        if(col+1<cols && matrix[row][col+1]==dist){//move right
             ++col;
             continue;
         }
-        if(row+1<rows && matrix[row+1][col]==1){//move down
+        if(row+1<rows && matrix[row+1][col]==dist){//move down
             ++row;
             continue;
         }
-        if(0<col && matrix[row][col-1]==1){//move left
+        if(0<col && matrix[row][col-1]==dist){//move left
             --col;
             continue;
         }

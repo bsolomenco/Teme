@@ -1,4 +1,4 @@
-#include <Connex.hpp>
+#include "Connex.hpp"
 
 //--------------------------------------------------------------------------------
 Connex::Connex(Matrix& matrix)
@@ -7,8 +7,8 @@ Connex::Connex(Matrix& matrix)
 
 //--------------------------------------------------------------------------------
 void Connex::run(){
-    auto rows = _matrix.size();
-    auto cols = _matrix[0].size();
+    auto rows = static_cast<int>(_matrix.size());
+    auto cols = static_cast<int>(_matrix[0].size());
     for(int i=0; i<rows; ++i){
         for(int j=0; j<cols; ++j){
             if(_matrix[i][j] == 1){//cell belongs to an object
@@ -40,8 +40,8 @@ void Connex::run(){
 
 //--------------------------------------------------------------------------------
 void Connex::visit(int id, int row, int col, std::queue<Cell>& queue){
-    auto rows = _matrix.size();
-    auto cols = _matrix[0].size();
+    auto rows = static_cast<int>(_matrix.size());
+    auto cols = static_cast<int>(_matrix[0].size());
     if(0<=row && row<rows && 0<=col && col<cols && _matrix[row][col]==1){//valid, marked as original object
         _matrix[row][col] = id;//assign current unique identifier (sequence number > 1)
         _obj.area++;

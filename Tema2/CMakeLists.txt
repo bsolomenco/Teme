@@ -7,7 +7,7 @@ project(Teme
     DESCRIPTION "Teme"
 )
 
-include(Ns.cmake)
+include(../Ns.cmake)
 
 add_subdirectory("2.1 Stack")
 add_subdirectory("2.2 ParensMatch")

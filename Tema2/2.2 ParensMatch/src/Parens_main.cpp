@@ -33,7 +33,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv){
         if(buf[0]=='\n' || redirectedStdin && (buf[0]=='#')){//skip comments & empty lines
             continue;
         }
-        auto len = strlen(buf);
+        auto len = static_cast<int>(strlen(buf));
         int i = 0;
         for(; i<len; ++i){
             switch(buf[i]){
@@ -55,7 +55,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv){
                 case ']':
                     [[fallthrough]];
                 case '}':
-                    if(charStack.empty() || charStack.top()!=openParen(buf[i])){//closiong paren withot opening pair
+                    if(charStack.empty() || charStack.top()!=openParen(buf[i])){//closing paren without opening pair
                         redirectedStdin && printf(buf);
                         printf("%*s^ ERR closing paren '%c' without opening pair\n", i, "", buf[i]);
                         goto afterFor;

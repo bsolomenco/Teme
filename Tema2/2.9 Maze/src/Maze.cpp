@@ -1,4 +1,4 @@
-#include <Maze.hpp>
+#include "Maze.hpp"
 
 //--------------------------------------------------------------------------------
 Maze::Maze(Matrix& matrix)
@@ -36,6 +36,7 @@ void Maze::run(int row0, int col0, int row1, int col1){
     if(_matrix[row0][col0]){//solution found
         _minimalSolution = _matrix[row0][col0];
         std::queue<Cell> queue;
+    #if 0
         queue.push({row0,col0});
         while(!queue.empty()){
             auto [row,col] = queue.front();
@@ -50,7 +51,9 @@ void Maze::run(int row0, int col0, int row1, int col1){
             visitSolutionCell(row+1, col  , dist, queue);
             visitSolutionCell(row  , col-1, dist, queue);
         }
+    #endif
     }
+#if 0
     //clean unused roads in matrix
     for(auto& line: _matrix){
         for(auto& elem: line){
@@ -59,12 +62,13 @@ void Maze::run(int row0, int col0, int row1, int col1){
             }
         }
     }
+#endif
 }
 
 //--------------------------------------------------------------------------------
 void Maze::visitRoadCell(int row, int col, int rowOffset, int colOffset, int id, std::queue<Cell>& queue){
-    auto rows = _matrix.size();
-    auto cols = _matrix[0].size();
+    auto rows = static_cast<int>(_matrix.size());
+    auto cols = static_cast<int>(_matrix[0].size());
     row += rowOffset;
     col += colOffset;
     if(0<=row && row<rows && 0<=col && col<cols && _matrix[row][col]==0){//valid, marked as road cell
@@ -75,8 +79,8 @@ void Maze::visitRoadCell(int row, int col, int rowOffset, int colOffset, int id,
 
 //--------------------------------------------------------------------------------
 void Maze::visitSolutionCell(int row, int col, int dist, std::queue<Cell>& queue){
-    auto rows = _matrix.size();
-    auto cols = _matrix[0].size();
+    auto rows = static_cast<int>(_matrix.size());
+    auto cols = static_cast<int>(_matrix[0].size());
     if(0<=row && row<rows && 0<=col && col<cols && _matrix[row][col]==dist){
         queue.push({row, col});
     }

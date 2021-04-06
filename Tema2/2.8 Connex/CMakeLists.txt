@@ -7,7 +7,7 @@ project(Connex
     DESCRIPTION "Connex Components in a matrix"
 )
 
-include(../Ns.cmake)
+include(../../Ns.cmake)
 
 file(GLOB_RECURSE Src CONFIGURE_DEPENDS
     src/*.cpp
