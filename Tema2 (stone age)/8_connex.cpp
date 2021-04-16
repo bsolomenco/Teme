@@ -11,7 +11,7 @@ using Matrix = std::vector<std::vector<int>>;
 //--------------------------------------------------------------------------------
 std::vector<int> parseLineOfNumbers(const char* buf) {
     std::vector<int> vec;
-    const auto* end = buf + strlen(buf);
+    const char* end = buf + strlen(buf);
     int value = 0;
     std::istringstream iss(buf);
     while(iss >> value){
@@ -50,8 +50,8 @@ Matrix readMatrixFromFile(FILE* file) {
 
 //--------------------------------------------------------------------------------
 void writeMatrixToFile(const Matrix& matrix, FILE* file) {
-    for (auto line : matrix) {
-        for (auto elem : line) {
+    for (std::vector<int> line : matrix) {
+        for (int elem : line) {
             fprintf(file, "%2d ", elem);
         }
         fprintf(file, "\n");
@@ -159,7 +159,7 @@ void writeSubmatrixToFile(const Matrix& matrix, const Connex::Obj& obj, FILE* ou
 int main( int argc, char** argv){
 
     FILE* inputFile = fopen("8_connex.test","rt");
-    auto matrix = readMatrixFromFile(inputFile);
+    Matrix matrix = readMatrixFromFile(inputFile);
     if(matrix.size() == 0){
         printf("ERR empty or wrong input\n");
         return 2;
@@ -170,7 +170,7 @@ int main( int argc, char** argv){
     Connex connex(matrix);
     connex.run();
     printf("connex objects : %zu\n", connex.objects.size());
-    auto maxArea = connex.objects[connex.maxAreaObjIndex()].area;
+    int maxArea = connex.objects[connex.maxAreaObjIndex()].area;
     printf("max object area: %d\n", connex.objects[connex.maxAreaObjIndex()].area);
 
     int index = 0;
