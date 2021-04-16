@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 
-using Matrix = std::vector<std::vector<int>>;
+typedef std::vector<std::vector<int>> Matrix;
 
 //--------------------------------------------------------------------------------
 std::vector<int> parseLineOfNumbers(const char* buf) {
@@ -23,7 +23,7 @@ std::vector<int> parseLineOfNumbers(const char* buf) {
 Matrix readMatrixFromFile(FILE* file) {
     char buf[1024] = {};
     size_t columns = 0;
-    std::vector<std::vector<int>> matrix;
+    Matrix matrix;
     for (int line = 0; fgets(buf, sizeof(buf), file); ++line) {
         if (buf[0] == '\n') {//stop at 1st empty line
             break;
