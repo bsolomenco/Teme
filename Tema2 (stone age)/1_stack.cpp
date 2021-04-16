@@ -39,7 +39,7 @@ void Stack::push(const Info& info) {
 //--------------------------------------------------------------------------------
 void Stack::pop() {
     if (_head) {
-        auto nod = _head;
+        Nod* nod = _head;
         _head = _head->next;
         delete nod;
         _size--;
@@ -49,7 +49,7 @@ void Stack::pop() {
 //--------------------------------------------------------------------------------
 void Stack::clear() {
     while (_head) {
-        auto nod = _head;
+        Nod* nod = _head;
         _head = _head->next;
         delete nod;
     }
@@ -70,7 +70,7 @@ int main(int argc, char** argv){
 
     printf("popping elements from stack:\n");
     while(!stack.empty()){
-        auto element = stack.top();
+        Info element = stack.top();
         printf("    %d\n", element);
         stack.pop();
     }
