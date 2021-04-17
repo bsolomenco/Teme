@@ -5,6 +5,7 @@
 #include <stack>
 #include <queue>
 #include <vector>
+#include <string.h>
 
 typedef std::vector<std::vector<int>> Matrix;
 
@@ -75,7 +76,10 @@ struct Connex {
 
     std::vector<Obj> objects;
 
-    Connex(Matrix& matrix);
+    Connex(Matrix& matrix)
+        : _matrix(matrix)
+    {}
+
     void run();
     void visit(int id, int row, int col, std::queue<Cell>& queue);
     int maxAreaObjIndex() {
@@ -89,9 +93,6 @@ struct Connex {
 };
 
 //--------------------------------------------------------------------------------
-Connex::Connex(Matrix& matrix)
-    : _matrix(matrix)
-{}
 
 //--------------------------------------------------------------------------------
 void Connex::run() {
@@ -149,7 +150,7 @@ void writeSubmatrixToFile(const Matrix& matrix, const Connex::Obj& obj, FILE* ou
     int id = obj.id;
     for(int i=obj.top; i<=obj.bottom; ++i){
         for(int j=obj.left; j<=obj.right; ++j){
-            fprintf(outputFile, "%d ", matrix[i][j]==obj.id ? id : 0);
+            fprintf(outputFile, "%2d ", matrix[i][j]==obj.id ? id : 0);
         }
         fprintf(outputFile, "\n");
     }

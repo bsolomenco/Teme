@@ -209,7 +209,7 @@ int Rpn::precedence(Op op) {
 
 //--------------------------------------------------------------------------------
 Rpn::Associativity Rpn::associativity(Op op) {
-    static constexpr Associativity _associativity[Op::_1 - Op::ADD] = { LEFT, LEFT, LEFT, LEFT, RIGHT };
+    static const Associativity _associativity[Op::_1 - Op::ADD] = { LEFT, LEFT, LEFT, LEFT, RIGHT };
     return _associativity[op - Op::ADD];
 }
 

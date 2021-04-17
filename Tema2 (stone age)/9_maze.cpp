@@ -4,6 +4,7 @@
 #include <sstream>
 #include <queue>
 #include <vector>
+#include <string.h>
 
 typedef std::vector<std::vector<int>> Matrix;
 
