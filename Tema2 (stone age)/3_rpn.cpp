@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cmath>
 #include <stack>
+#include <float.h>
 #pragma warning(disable : 4996)
 
 struct Rpn {
@@ -33,16 +34,15 @@ struct Rpn {
     Associativity associativity(Op op);
 };
 
-namespace {
-    double add(double x, double y) { return x + y; }
-    double sub(double x, double y) { return x - y; }
-    double mul(double x, double y) { return x * y; }
-    double div(double x, double y) { return x / y; }
-    double pow(double x, double y) { return std::pow(x, y); }
+//operations
+double add(double x, double y) { return x + y; }
+double sub(double x, double y) { return x - y; }
+double mul(double x, double y) { return x * y; }
+double div(double x, double y) { return x / y; }
+double pow(double x, double y) { return std::pow(x, y); }
 
-    using Func = double(*)(double, double);
-    Func func[] = { &add, &sub, &mul, &div, &pow };
-}
+typedef double(*Func)(double, double);
+Func func[] = { &add, &sub, &mul, &div, &pow };
 
 //--------------------------------------------------------------------------------
 Rpn::Rpn() {

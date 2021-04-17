@@ -14,7 +14,7 @@ char openParen(char closeParen){//returns the corresponding open paren for the g
 //================================================================================
 int main(int argc,  char** argv){
     printf(
-        "input one parenthesis expression per line with ranking, like:\n"
+        "input one parenthesis expression per line, like:\n"
         "        ()\n"
         "        {[()]}\n"
         "        ...\n"
