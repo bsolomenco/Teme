@@ -4,11 +4,12 @@
 #include <sstream>
 #include <queue>
 #include <stack>
+#include <string>
 #include <vector>
 
 //--------------------------------------------------------------------------------
 struct Node{//tree node
-    char c = 0;
+    char ch = 0;
     Node* left   = 0;
     Node* right  = 0;
 };
@@ -37,27 +38,83 @@ struct HuffmanTree{
                     node = node->right;
                 }
             }
-            node->c = c;
+            node->ch = c;
         }
     }
 
     //--------------------------------------------------------------------------------
-    void printNode(Node* node, int level){
-        printf("%*s%c\n", 4*level, "", node->c);
-        if(node->left)
-            printNode(node->left, level+1);
-        if(node->right)
-            printNode(node->right, level+1);
-    }
-
-    //--------------------------------------------------------------------------------
-    void print(){
-        printf("Huffman tree (transposed):\n");
+    void printLevels(){
+        printf("    ");
         for(int i=0; i<10; ++i){
             printf("%-4d", i);
         }
         printf(" <-- tree levels\n");
-        printNode(&root, 0);
+    }
+
+    //--------------------------------------------------------------------------------
+#if 0 //output
+- node info could be any length => need to be printed only one per line (otherwise the layout could be either destroyed or become very big)
+- this solution traverse in-order and indent each node proportional with its tree level
+0
++---1
+|   +---2
+|   |   +---21 (left node only)
+|   \---3
+|       \---31 (right node only)
+\---4
+    +---41 (both left...
+    \---42 ...and right nodes)
+#endif
+    void printPreorderTransposedIterative(){
+        printf("tree (iterative preorder transposed levels; +=left \\=right):\n");
+        printLevels();
+        struct Info{
+            std::string prefix;
+            Node*       node = 0;
+            int         level = 0;
+            char        type = 0;//' '=root '|'=left '\'=right
+        };
+        std::stack<Info> stack;
+        for(stack.push({"", &root, 0, ' '}); stack.empty()==false; ){
+            Info info = stack.top();
+            stack.pop();
+            printf("%s%c--(%c)\n", info.prefix.c_str(), info.type, info.node->ch);
+            std::string pfx = info.prefix + (info.type=='+'?"|   ":"    ");
+            if(info.node->right)
+                stack.push({pfx, info.node->right, info.level+1, '\\'});
+            if(info.node->left)
+                stack.push({pfx, info.node->left, info.level+1, '+'});
+        }
+    }
+
+    //--------------------------------------------------------------------------------
+#if 0
+- this solution traverse right->root->left and indent each node proportional with its tree level
+                /--99
+            /--98
+        /--10
+    /--17
+    |   \--24
+    |       \--32
+ --30
+    |   /--15
+    \--23
+        |   /--41
+        \-- 8
+#endif
+    enum NodeType{ROOT, LEFT, RIGHT};
+    void printRightRootLeftRotatedRecursive(std::string prefix, Node* node, NodeType nt){
+        static char ch[3] = {' ', '\\', '/'};
+        if(node->right)
+            printRightRootLeftRotatedRecursive(prefix+(nt==NodeType::LEFT?"|   ":"    "), node->right, NodeType::RIGHT);
+        printf("%s%c--(%c)\n", prefix.c_str(), ch[nt], node->ch);
+        if(node->left)
+            printRightRootLeftRotatedRecursive(prefix+(nt==NodeType::RIGHT?"|   ":"    "), node->left, NodeType::LEFT);
+    }
+    void printRightRootLeftRotatedRecursive(){
+        printf("tree (recursive right->root->left rotated):\n");
+        printLevels();
+        printRightRootLeftRotatedRecursive("", &root, NodeType::ROOT);
     }
 };
 
@@ -66,7 +123,8 @@ int main(int argc, char**argv){
     FILE* file = fopen("5_Huffman.test", "rt");
     if(file){
         HuffmanTree huffmanTree(file);
-        huffmanTree.print();
+        huffmanTree.printPreorderTransposedIterative();
+        huffmanTree.printRightRootLeftRotatedRecursive();
         fclose(file);
     }
     return 0;
