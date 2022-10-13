@@ -2,6 +2,8 @@
 #include <charconv>
 #include <cstdio>
 #include <vector>
+#include <system_error>
+
 
 //--------------------------------------------------------------------------------
 std::vector<int> parseLineOfNumbers(const char* buf){
